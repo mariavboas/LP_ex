@@ -20,17 +20,19 @@ def exercicio_1(): #
             print( f'a soma do triplo do primeiro número com o terceiro número é igual a: {resultado_b:.2f}')
             print( f'O terceiro número elevado ao cubo é igual a: {resultado_c:.2f}')
             break # termina o loop caso nenhum erro tenha sido cometido
-        except(ValueError): # roda quando ocorre um erro
+        except(ValueError): # roda quando ocorre um erro, e depois reinicia (não há break)
             print("Valor Inválido. Tente Novamente")
-            break
+
 # exercicio 12
 def exercicio_2():
-    try:
-        altura = float(input("Descubra seu peso ideal! Insira sua altura (em metros): \n")) #pede a altura do usuario
-        peso_ideal = (72.7 * altura) - 58
-        print(f'O seu peso ideal é: {peso_ideal:.3f}')
-    except(ValueError):
-        print("Altura inválida. Tente novamente")
+    while True:
+        try:
+            altura = float(input("Descubra seu peso ideal! Insira sua altura (em metros): \n")) #pede a altura do usuario
+            peso_ideal = (72.7 * altura) - 58
+            print(f'O seu peso ideal é: {peso_ideal:.3f}')
+            break
+        except(ValueError):
+            print("Altura inválida. Tente novamente")
 
 # exercicio 13
 def exercicio_3():
@@ -40,19 +42,21 @@ def exercicio_3():
             break # reinicia o código se a altura inserida for inválida
         except(ValueError):
             print("Altura inválida. Tente novamente")
-            break
-              
-
-    genero = str(input('\nInsira seu gênero, digite "m" para mulher e "h" para homem: ')) #pede o genero do usuario
-    # calculando o peso ideal de acordo com o genero escolhido utilizando if
-    if genero == 'm':
-        peso_idealM = (62.2 * altura) - 44.7
-        print(f'\nSeu peso ideal é: {peso_idealM:.2f} kg.')
-    elif genero == 'h':
-        peso_idealH = (72.7 * altura) - 58
-        print(f'\nSeu peso ideal é: {peso_idealH:.2f} kg.')
-    else:
-        print("Gênero inválido. Tente novamente.")
+    executar = True # variável que irá definir se o próximo bloco irá rodar
+    while executar:
+            genero = input('\nInsira seu gênero, digite "m" para mulher e "h" para homem: ') #pede o genero do usuario
+            # calculando o peso ideal de acordo com o genero escolhido utilizando if
+            if genero == 'm':
+                peso_idealM = (62.2 * altura) - 44.7
+                print(f'\nSeu peso ideal é: {peso_idealM:.2f} kg.')
+                executar = False # torna a condição de execução falsa
+            elif genero == 'h':
+                peso_idealH = (72.7 * altura) - 58
+                print(f'\nSeu peso ideal é: {peso_idealH:.2f} kg.')
+                executar = False
+            # o bloco a seguir não tornará a condição falsa
+            else:
+                print("Gênero inválido. Tente novamente.")
 
 # exercicio 14
 def exercicio_4():
@@ -68,11 +72,10 @@ def exercicio_4():
                 multa = excesso * 4.00
                 # mostrando os dados
                 print(f"\nO valor de quilos excedido é: {excesso:.2f}\nO valor da multa a ser paga é: {multa:.2f}")
-            break    
+            break
         except(ValueError):
             print("Peso inválido. Tente novamente")
-            break
-            
+     
 # menu para escolher o exercício desejado
 def main(): #pagina principal do programa
     print("Escolha o programa que deseja rodar")
